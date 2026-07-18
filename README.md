@@ -1,4 +1,4 @@
-# rag-paper-assistant
+# RAG Research Paper Q&A Assistant
 
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Vector Store](https://img.shields.io/badge/vector%20store-FAISS-brightgreen)
