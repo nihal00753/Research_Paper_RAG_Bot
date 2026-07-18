@@ -1,11 +1,10 @@
-# RAG Research Paper Q&A Bot
+# rag-paper-assistant
 
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Vector Store](https://img.shields.io/badge/vector%20store-FAISS-brightgreen)
 ![Search](https://img.shields.io/badge/search-BM25%20%2B%20Dense-orange)
 ![UI](https://img.shields.io/badge/UI-Streamlit-red)
 ![LLM](https://img.shields.io/badge/inference-OpenRouter-9cf)
-![Tested](https://img.shields.io/badge/logic-unit%20tested-success)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
 A retrieval-augmented QA system built over a corpus of arXiv papers on retrieval-augmented generation itself — hybrid search, query rewriting (HyDE, multi-query/RAG-Fusion), cross-encoder reranking, and parent-document compression, wired into a Streamlit app that answers questions against the papers directly.
@@ -34,8 +33,6 @@ Every one of those steps is a toggle, not a fixed pipeline — see `pipeline.py`
 | Orchestration | `pipeline.py` | Five named configs (`naive` → `hybrid` → `hybrid_reranked` → `full_stack_hyde` / `full_stack_multiquery`) so the ablation used for evaluation is a one-line change |
 | Interface | `app.py` | Streamlit app — plain by default (question, answer, sources), with an opt-in "show retrieval details" view for anyone who wants to see the mechanics stage by stage |
 
-The retrieval logic was validated independently of any external API — see `tests/`: `test_logic.py` covers chunking and fusion edge cases, `test_pipeline.py` runs all five configs end-to-end against a fake embedding model, fake reranker, and stubbed LLM, so the pipeline's control flow is verified without depending on network access.
-
 ## Limitations
 
 - **Corpus size**: ~50-100 papers is enough to demonstrate the retrieval techniques, not enough to be a comprehensive RAG literature tool.
@@ -53,7 +50,7 @@ The retrieval logic was validated independently of any external API — see `tes
 - Add OCR fallback for figure/table-heavy papers
 - Multi-turn conversation support (follow-up questions against the same retrieved context)
 - Pull the RAGAS comparison table from the companion eval project into this README once it's complete
-- GitHub Actions CI running `tests/` on every push
+- Add a basic test suite for the chunking and fusion logic
 
 ## Evaluation (companion project)
 
@@ -73,14 +70,6 @@ cp .env.example .env   # add your OpenRouter key
 ```bash
 python ingest.py       # builds data/papers/ and data/index/ (run once; regenerable, gitignored)
 streamlit run app.py
-```
-
-## Testing
-
-```bash
-cd tests
-python test_logic.py
-python test_pipeline.py
 ```
 
 ## Stack
