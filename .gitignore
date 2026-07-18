@@ -1,0 +1,18 @@
+# secrets
+.env
+
+# downloaded papers + built indices (large, regenerable via ingest.py)
+data/papers/
+data/index/
+
+# python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# streamlit
+.streamlit/
+
+# os cruft
+.DS_Store
