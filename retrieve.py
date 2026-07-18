@@ -1,17 +1,3 @@
-"""
-retrieve.py — all retrieval logic, behind one function: retrieve(query, config).
-
-config is a dict with these keys:
-    use_hybrid: bool                        BM25 + dense (fused with RRF) vs dense-only
-    query_rewrite: None | "hyde" | "multi_query"
-    use_reranker: bool
-    use_parent_expansion: bool
-    top_k: int
-
-Each flag can be toggled independently, which is what lets pipeline.py define
-"naive" vs "hybrid" vs "full stack" configs without duplicating any code.
-"""
-
 import json
 import os
 import pickle
